@@ -45,3 +45,5 @@ ehthumbs.db
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
 \.idea/
+
+node_modules/
