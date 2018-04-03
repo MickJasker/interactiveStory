@@ -16,8 +16,8 @@ public class EdgeMover : Interacter {
 		
 	}
 
-    public override void Interact(Movement movement)
+    public override void Interact(GameObject player)
     {
-        movement.Move(Direction);
+        player.GetComponent<Movement>().Move(Direction);
     }
 }
