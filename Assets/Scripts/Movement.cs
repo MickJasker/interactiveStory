@@ -14,6 +14,11 @@ public class Movement : MonoBehaviour
         get { return _Speed * Time.deltaTime; }
     }
 
+    private void Start()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
+
     // Update is called once per frame
     void Update()
     {
