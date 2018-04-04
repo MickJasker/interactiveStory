@@ -2,79 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour {
+public class Movement : MonoBehaviour
+{
+    [HideInInspector]
+    public bool Locked;
     public float _Speed;
     public Camera Cam;
-    public bool AutoMove;
 
-    float Speed
+    public float Speed
     {
         get { return _Speed * Time.deltaTime; }
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Click();
         }
     }
 
+    // checks for an interactable object on mouseclick, and interacts with it
     public void Click()
     {
-        Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (!Locked)
         {
-            Interacter i = hit.collider.GetComponent<Interacter>();
-            if (i != null)
-            {
-                i.Interact(gameObject);
-                return;
-            }
+            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
 
-            print("Found a collider without interacter-script!");
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Interacter i = hit.collider.GetComponent<Interacter>();
+                if (i != null)
+                {
+                    i.Interact(gameObject);
+                    return;
+                }
+
+                print("Found a collider without interact-script!");
+            }
         }
     }
 
+    //Moves the character in a direction (currently only used when moving left and right)
     public void Move(Vector3 direction)
     {
         transform.Translate(direction * Speed);
     }
 
+    //Moves the character towards a location. Character moves over the x-axis first, then moves over the x-axis
     public void MoveTowards(Vector3 spot)
     {
-        StartCoroutine(_moveTowards(spot));
-    }
-
-    IEnumerator _moveTowards(Vector3 spot)
-    {
-        AutoMove = true;
-        while (AutoMove && transform.position != spot)
+        if (transform.position.x != spot.x)
         {
-            float step = Speed / 2; // I don´t know why speed is doubled here 
-            if (transform.position.x != spot.x)
-            {
-                Vector3 pos = new Vector3(spot.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, pos, step);
-                yield return null;
-            }
-            else //if (transform.position.z != spot.z)
-            {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
-                transform.position = Vector3.MoveTowards(transform.position, pos, step);
-                yield return null;
-            }
-            
+            Vector3 pos = new Vector3(spot.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, pos, Speed);
         }
-
-        AutoMove = false;
+        else //if (transform.position.z != spot.z)
+        {
+            Transform model = transform.GetChild(0);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
+            model.position = Vector3.MoveTowards(model.position, pos, Speed);
+        }
     }
 }
