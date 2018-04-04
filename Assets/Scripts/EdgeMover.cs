@@ -13,15 +13,17 @@ public class EdgeMover : Interacter
 
     IEnumerator _move(Movement player)
     {
-        Active = true;
-        player.AutoMove = false;
-
-        while (Input.GetMouseButton(0))
+        if (!player.Locked)
         {
-            player.Move(Direction);
-            yield return null;
-        }
+            Active = true;
 
-        Active = false;
+            while (Input.GetMouseButton(0))
+            {
+                player.Move(Direction);
+                yield return null;
+            }
+
+            Active = false;
+        }
     }
 }

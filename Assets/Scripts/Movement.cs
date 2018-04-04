@@ -6,7 +6,6 @@ public class Movement : MonoBehaviour {
     public float _Speed;
     public Camera Cam;
     public bool Locked;
-    public bool AutoMove;
 
     public float Speed
     {

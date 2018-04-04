@@ -86,17 +86,24 @@ public abstract class Choice : Dialogue
         base.ResetDialogue();
 
         SelectedChoice = 0;
-        if (A.text != null)
+        if (A != null)
         {
             A.text = "";
         }
-        if (B.text != null)
+        if (B != null)
         {
             B.text = "";
         }
 
-        ACursor.enabled = false;
-        BCursor.enabled = false;
+        if (ACursor != null)
+        {
+            ACursor.enabled = false;
+        }
+
+        if (BCursor != null)
+        {
+            BCursor.enabled = false;
+        }
     }
     #endregion
 }
