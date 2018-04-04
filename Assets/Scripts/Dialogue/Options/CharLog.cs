@@ -1,13 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 public class CharLog : Log
 {
-    #region UnityFields
     public Image Picture;
-    #endregion
 
     #region Spawning
     //Spawns the proper dialoguebox on the position of the camera

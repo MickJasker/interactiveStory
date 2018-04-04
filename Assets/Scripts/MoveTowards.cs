@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MoveTowards : Interacter
 {
+    //Starts _move
     public override void Interact(GameObject player)
     {
-        Movement m = player.GetComponent<Movement>();
-        StartCoroutine(_move(m));
+        StartCoroutine(_move(player.GetComponent<Movement>()));
     }
 
+    //moves the character towards a spot for as long as the character is not near it.
     IEnumerator _move(Movement player)
     {
         player.Locked = true;

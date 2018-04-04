@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Dialogue : MonoBehaviour
 {
-
     #region Fields
     protected GameObject DialogueBoxClone;
 
@@ -29,6 +28,7 @@ public abstract class Dialogue : MonoBehaviour
     }
 
     #region Writing
+    //Writes down text, 1 letter per frame
     IEnumerator writing()
     {
         while (Active)
@@ -98,7 +98,6 @@ public abstract class Dialogue : MonoBehaviour
     public virtual void SpawnDialogueBox()
     {
         GameObject cam = Camera.main.gameObject;
-
         if (this is CharLog)
         {
             DialogueBoxClone = cam.transform.GetChild(0).gameObject;

@@ -124,6 +124,7 @@ public class DialogueHandler : Interacter
         StartCoroutine(activate(m));
     }
 
+    //Checks if the Dialogue is finished, and checks for input every frame
     IEnumerator activate(Movement player)
     {
         player.Locked = true;
@@ -138,12 +139,9 @@ public class DialogueHandler : Interacter
     }
 
     //Ends the dialogue, resets the handler, and unlocks player controls
-    //OLD: Returns the result of the dialogue, in the form of an integer
-    //triggersystem should solve this, not dialoguehandlers
     public void EndDialogue(int endresult)
     {
         ResetDialogue();
-
         Active = false;
     }
 

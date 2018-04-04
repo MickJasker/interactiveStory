@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour {
+public class Movement : MonoBehaviour
+{
+    [HideInInspector]
+    public bool Locked;
     public float _Speed;
     public Camera Cam;
-    public bool Locked;
 
     public float Speed
     {
         get { return _Speed * Time.deltaTime; }
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 
     // Update is called once per frame
     void Update()
@@ -26,6 +23,7 @@ public class Movement : MonoBehaviour {
         }
     }
 
+    // checks for an interactable object on mouseclick, and interacts with it
     public void Click()
     {
         if (!Locked)
@@ -47,11 +45,13 @@ public class Movement : MonoBehaviour {
         }
     }
 
+    //Moves the character in a direction
     public void Move(Vector3 direction)
     {
         transform.Translate(direction * Speed);
     }
 
+    //Moves the character towards a location. Character moves over the x-axis first, then moves over the x-axis
     public void MoveTowards(Vector3 spot)
     {
         if (transform.position.x != spot.x)

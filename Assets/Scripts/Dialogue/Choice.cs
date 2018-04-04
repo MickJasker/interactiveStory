@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public abstract class Choice : Dialogue
 {
-
-    #region Fields
     public List<string> ChoiceList;
 
     public List<int> ChoiceIndexList;
@@ -21,7 +19,6 @@ public abstract class Choice : Dialogue
     private Image BCursor;
 
     public ChoiceHandler ChoiceHandler;
-    #endregion
 
     #region Writing
     //Checks the progress of the textwriting, returns true if finished
@@ -81,6 +78,7 @@ public abstract class Choice : Dialogue
     #endregion
 
     #region Resetting
+    //Clears all choice fields
     public override void ResetDialogue()
     {
         base.ResetDialogue();
