@@ -14,7 +14,13 @@ public class ChoiceHandler : MonoBehaviour {
         chosen = index;
         if (OnChoose != null)
         {
-            OnChoose();
+            StartCoroutine(_choose());
         }
+    }
+
+    IEnumerator _choose()
+    {
+        yield return new WaitForEndOfFrame();
+        OnChoose();
     }
 }

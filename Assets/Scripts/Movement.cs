@@ -28,19 +28,22 @@ public class Movement : MonoBehaviour {
 
     public void Click()
     {
-        Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (!Locked)
         {
-            Interacter i = hit.collider.GetComponent<Interacter>();
-            if (i != null)
-            {
-                i.Interact(gameObject);
-                return;
-            }
+            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
 
-            print("Found a collider without interacter-script!");
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Interacter i = hit.collider.GetComponent<Interacter>();
+                if (i != null)
+                {
+                    i.Interact(gameObject);
+                    return;
+                }
+
+                print("Found a collider without interact-script!");
+            }
         }
     }
 

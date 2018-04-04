@@ -52,17 +52,17 @@ public abstract class Choice : Dialogue
         c.OnChoose += OnChosen;
         ChoiceHandler = c;
 
-        Text[] choices = c.GetComponentsInChildren<Text>();
+        Image[] choices = c.GetComponentsInChildren<Image>();
         //Add data to option A
-        A = choices[0];
+        ACursor = choices[0];
+        A = ACursor.GetComponentInChildren<Text>();
         A.text = ChoiceList[0];
-        ACursor = A.transform.GetChild(0).GetComponent<Image>();
         ACursor.enabled = true;
 
         //Add data to option B
-        B = choices[1];
+        BCursor = choices[1];
+        B = BCursor.GetComponentInChildren<Text>();
         B.text = ChoiceList[1];
-        BCursor = A.transform.GetChild(0).GetComponent<Image>();
         BCursor.enabled = true;
     }
 
