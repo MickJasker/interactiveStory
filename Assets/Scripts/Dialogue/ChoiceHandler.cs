@@ -15,7 +15,14 @@ public class ChoiceHandler : MonoBehaviour
         chosen = index;
         if (OnChoose != null)
         {
-            OnChoose();
+            StartCoroutine(_wait());
         }
+    }
+
+    //triggers at the end of the frame, making sure the next dialogue doesn't get skipped
+    IEnumerator _wait()
+    {
+        yield return new WaitForEndOfFrame();
+        OnChoose();
     }
 }

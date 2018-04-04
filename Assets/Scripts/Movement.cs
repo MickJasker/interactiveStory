@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    //Moves the character in a direction
+    //Moves the character in a direction (currently only used when moving left and right)
     public void Move(Vector3 direction)
     {
         transform.Translate(direction * Speed);
@@ -61,8 +61,9 @@ public class Movement : MonoBehaviour
         }
         else //if (transform.position.z != spot.z)
         {
+            Transform model = transform.GetChild(0);
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
-            transform.position = Vector3.MoveTowards(transform.position, pos, Speed);
+            model.position = Vector3.MoveTowards(model.position, pos, Speed);
         }
     }
 }
