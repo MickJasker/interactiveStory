@@ -5,9 +5,10 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
     public float _Speed;
     public Camera Cam;
+    public bool Locked;
     public bool AutoMove;
 
-    float Speed
+    public float Speed
     {
         get { return _Speed * Time.deltaTime; }
     }
@@ -20,7 +21,7 @@ public class Movement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Click();
         }
@@ -51,30 +52,15 @@ public class Movement : MonoBehaviour {
 
     public void MoveTowards(Vector3 spot)
     {
-        StartCoroutine(_moveTowards(spot));
-    }
-
-    IEnumerator _moveTowards(Vector3 spot)
-    {
-        AutoMove = true;
-        while (AutoMove && transform.position != spot)
+        if (transform.position.x != spot.x)
         {
-            float step = Speed / 2; // I don´t know why speed is doubled here 
-            if (transform.position.x != spot.x)
-            {
-                Vector3 pos = new Vector3(spot.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, pos, step);
-                yield return null;
-            }
-            else //if (transform.position.z != spot.z)
-            {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
-                transform.position = Vector3.MoveTowards(transform.position, pos, step);
-                yield return null;
-            }
-            
+            Vector3 pos = new Vector3(spot.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, pos, Speed);
         }
-
-        AutoMove = false;
+        else //if (transform.position.z != spot.z)
+        {
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
+            transform.position = Vector3.MoveTowards(transform.position, pos, Speed);
+        }
     }
 }

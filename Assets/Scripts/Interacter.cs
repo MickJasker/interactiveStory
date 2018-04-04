@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Interacter : MonoBehaviour
 {
+    public bool Active;
     public abstract void Interact(GameObject player);
 }
