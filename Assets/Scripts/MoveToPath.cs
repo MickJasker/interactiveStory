@@ -18,7 +18,7 @@ public class MoveToPath : Interacter {
 
         Transform model = player.transform.GetChild(0);
         Vector3 endpos = model.position;
-        endpos.z = -3.58f;
+        endpos.z = 6.39f + 2.87f;
 
         while (model.transform.position != endpos)
         {

@@ -19,7 +19,6 @@ public class MoveTowards : Interacter
         Transform model = player.transform.GetChild(0);
 
         Vector3 endpos = transform.position;
-        endpos.y = player.transform.position.y;
         endpos.z -= 2;
 
         while (model.transform.position != endpos)

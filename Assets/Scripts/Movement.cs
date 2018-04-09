@@ -9,6 +9,9 @@ public class Movement : MonoBehaviour
     public float _Speed;
     public Camera Cam;
 
+    public SpriteRenderer r;
+    public float floorlevel;
+
     public float Speed
     {
         get { return _Speed * Time.deltaTime; }
@@ -64,8 +67,15 @@ public class Movement : MonoBehaviour
         else //if (transform.position.z != spot.z)
         {
             Transform model = transform.GetChild(0);
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
+            Vector3 pos = new Vector3(transform.position.x, model.transform.position.y, spot.z);
             model.position = Vector3.MoveTowards(model.position, pos, Speed);
         }
+    }
+
+    void SetSortingLayer()
+    {
+        //adds an amount to the sorting layer relative to the gameobject height
+        float objHeight = r.bounds.size.z * floorlevel;
+        r.sortingOrder = (int)((transform.position.z - objHeight) * -10);
     }
 }
