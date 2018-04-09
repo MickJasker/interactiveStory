@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Interacter : MonoBehaviour
 {
+    [HideInInspector]
     public bool Active;
     public abstract void Interact(GameObject player);
 }

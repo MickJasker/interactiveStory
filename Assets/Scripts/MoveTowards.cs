@@ -29,6 +29,5 @@ public class MoveTowards : Interacter
         }
 
         Active = false;
-        player.Locked = false;
     }
 }

@@ -134,8 +134,6 @@ public class DialogueHandler : Interacter
             CheckKeys();
             yield return null;
         }
-
-        player.Locked = false;
     }
 
     //Ends the dialogue, resets the handler, and unlocks player controls

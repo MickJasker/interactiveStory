@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Locked && Input.GetMouseButtonDown(0))
         {
             Click();
         }
@@ -31,22 +31,19 @@ public class Movement : MonoBehaviour
     // checks for an interactable object on mouseclick, and interacts with it
     public void Click()
     {
-        if (!Locked)
+        Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
         {
-            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            Interacter i = hit.collider.GetComponent<Interacter>();
+            if (i != null)
             {
-                Interacter i = hit.collider.GetComponent<Interacter>();
-                if (i != null)
-                {
-                    i.Interact(gameObject);
-                    return;
-                }
-
-                print("Found a collider without interact-script!");
+                i.Interact(gameObject);
+                return;
             }
+
+            print("Found a collider without interact-script!");
         }
     }
 
