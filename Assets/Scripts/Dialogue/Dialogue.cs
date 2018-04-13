@@ -3,18 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Dialogue : Interacter
+public class Dialogue : MonoBehaviour
 {
-    public override void Interact(GameObject player)
+    [HideInInspector]
+    public bool Finished;
+
+    [HideInInspector]
+    public Conversation conversation;
+
+    DialogueComponent[] Components;
+
+    private void Start()
+    {
+        Finished = false;
+        Components = GetComponentsInChildren<DialogueComponent>();
+    }
+
+    public void Interact(Conversation conversation)
     {
         StartCoroutine(_interaction());
     }
 
     IEnumerator _interaction()
     {
-        DialogueComponent[] components = GetComponentsInChildren<DialogueComponent>();
-
-        foreach (DialogueComponent c in components)
+        foreach (DialogueComponent c in Components)
         {
             c.StartComponent();
 
@@ -24,7 +36,13 @@ public class Dialogue : Interacter
             }
         }
 
-        foreach (DialogueComponent c in components)
+        Reset();
+    }
+
+    //Resets all components of the Dialogue
+    public void Reset()
+    {
+        foreach (DialogueComponent c in Components)
         {
             c.Reset();
         }

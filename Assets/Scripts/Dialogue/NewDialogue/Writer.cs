@@ -16,6 +16,7 @@ public class Writer : DialogueComponent
     protected override void Start()
     {
         Label = GetComponent<Text>();
+        Label.enabled = false;
         timeStamp = Time.time;
     }
 
@@ -41,6 +42,8 @@ public class Writer : DialogueComponent
 
             yield return null;
         }
+
+        yield return new WaitForEndOfFrame();
     }
 
     void InputCheck()
