@@ -6,21 +6,18 @@ using UnityEngine.UI;
 public class Dialogue : MonoBehaviour
 {
     [HideInInspector]
-    public bool Finished;
-
-    [HideInInspector]
-    public Conversation conversation;
+    public Conversation Conversation;
 
     DialogueComponent[] Components;
 
     private void Start()
     {
-        Finished = false;
         Components = GetComponentsInChildren<DialogueComponent>();
     }
 
     public void Interact(Conversation conversation)
     {
+        Conversation = conversation;
         StartCoroutine(_interaction());
     }
 

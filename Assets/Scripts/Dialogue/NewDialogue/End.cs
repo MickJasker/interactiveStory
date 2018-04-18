@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class End : DialogueComponent {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    Dialogue Current;
+
+    protected override void Start()
+    {
+        base.Start();
+        Dialogue d = GetComponentInParent<Dialogue>();
+        if (d)
+        {
+            Current = d;
+        }
+    }
+
+    public override void StartComponent()
+    {
+        Current.Conversation.Active = false;
+    }
 }

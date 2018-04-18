@@ -13,5 +13,5 @@ public abstract class DialogueComponent : MonoBehaviour
     }
 
     public abstract void StartComponent();
-    public abstract void Reset();
+    public virtual void Reset() { }
 }

@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public bool Locked;
     public float _Speed;
-    public Camera Cam;
+    private Camera Cam;
 
     public float Speed
     {
@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Cam = Camera.main;
     }
 
     // Update is called once per frame
