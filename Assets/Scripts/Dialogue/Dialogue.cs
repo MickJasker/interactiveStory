@@ -8,6 +8,9 @@ public class Dialogue : MonoBehaviour
     [HideInInspector]
     public Conversation Conversation;
 
+    [HideInInspector]
+    public bool Active;
+
     DialogueComponent[] Components;
 
     private void Start()
@@ -23,6 +26,7 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator _interaction()
     {
+        Active = true;
         foreach (DialogueComponent c in Components)
         {
             c.StartComponent();
@@ -33,6 +37,7 @@ public class Dialogue : MonoBehaviour
             }
         }
 
+        Active = false;
         Reset();
     }
 

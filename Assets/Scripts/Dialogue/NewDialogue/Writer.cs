@@ -53,6 +53,7 @@ public class Writer : DialogueComponent
             if(!IsWriteDone())
             {
                 FinishWrite();
+
                 return;
             }
 

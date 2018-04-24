@@ -10,6 +10,7 @@ public class NextDialogue : DialogueComponent {
     // Use this for initialization
     protected override void Start()
     {
+        base.Start();
         Dialogue d = GetComponentInParent<Dialogue>();
         if (d)
         {
