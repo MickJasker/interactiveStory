@@ -3,137 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public abstract class Dialogue : MonoBehaviour
+public class Dialogue : MonoBehaviour
 {
-    #region Fields
-    protected GameObject DialogueBoxClone;
+    [HideInInspector]
+    public Conversation Conversation;
 
-    public string Text;
-    private float TextSpeed;
+    [HideInInspector]
+    public bool Active;
 
-    private float timeStamp;
-    private int CurrentLetter;
+    DialogueComponent[] Components;
 
-    private bool Active;
-    protected Text DialogueText;
-    #endregion
-
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-        Active = false;
-
-        timeStamp = Time.time;
-        TextSpeed = 1f;
+        Components = GetComponentsInChildren<DialogueComponent>();
     }
 
-    #region Writing
-    //Writes down text, 1 letter per frame
-    IEnumerator writing()
+    public void Interact(Conversation conversation)
     {
-        while (Active)
-        {
-            if (!IsWriteDone())
-            {
-                Write();
-            }
-
-            yield return null;
-        }
+        Conversation = conversation;
+        StartCoroutine(_interaction());
     }
 
-    //Checks the progress of the textwriting, returns true if finished
-    public virtual bool IsWriteDone()
-    {
-        if (CurrentLetter == Text.Length + 1)
-        {
-            Active = false;
-            return true;
-        }
-
-        return false;
-    }
-
-    //Adds a letter to the textbox, if the textspeed is reached.
-    private void Write()
-    {
-        //Debug.Log("Before loop: " + CurrentLetter);
-        if (Time.time > timeStamp + TextSpeed * Time.fixedDeltaTime)
-        {
-            DialogueText.text = Text.Substring(0, CurrentLetter);
-            CurrentLetter++;
-            timeStamp = Time.time;
-        }
-    }
-
-    //Finishes the sentence.
-    public virtual void FinishWrite()
-    {
-        CurrentLetter = Text.Length;
-    }
-    #endregion
-
-    #region Starting and resetting
-    //Sets the status of the dialogue to true, starting the dialogue.
-    public void StartDialogue()
+    IEnumerator _interaction()
     {
         Active = true;
-        StartCoroutine(writing());
-    }
+        foreach (DialogueComponent c in Components)
+        {
+            c.StartComponent();
 
-    //sets the dialogue back to its original state, allowing it to be used again.
-    public virtual void ResetDialogue()
-    {
+            while(c.Active)
+            {
+                yield return null;
+            }
+        }
+
         Active = false;
-        if (DialogueText != null)
-        {
-            DialogueText.text = "";
-        }
-        CurrentLetter = 0;
+        Reset();
     }
-    #endregion
 
-    #region Spawning and destroying
-    //Spawns the proper dialoguebox on the position of the camera
-    public virtual void SpawnDialogueBox()
+    //Resets all components of the Dialogue
+    public void Reset()
     {
-        GameObject cam = Camera.main.gameObject;
-        if (this is CharLog)
+        foreach (DialogueComponent c in Components)
         {
-            DialogueBoxClone = cam.transform.GetChild(0).gameObject;
-        }
-        else if (this is CharChoice)
-        {
-            DialogueBoxClone = cam.transform.GetChild(1).gameObject;
-        }
-        else if (this is DescLog)
-        {
-            DialogueBoxClone = cam.transform.GetChild(2).gameObject;
-        }
-        else if (this is DescChoice)
-        {
-            DialogueBoxClone = cam.transform.GetChild(3).gameObject;
-        }
-        else
-        {
-            throw new System.NotImplementedException("Dialogue box was not defined!");
-        }
-
-        DialogueBoxClone.transform.GetChild(0).gameObject.SetActive(true);
-
-        //Gets the text component, and assigns it to a variable
-        Text TB = DialogueBoxClone.transform.Find("Canvas/Text").GetComponent<Text>();
-
-        if (TB != null)
-        {
-            DialogueText = TB;
+            c.Reset();
         }
     }
-
-    //Destroys the dialoguebox when the dialogue is done
-    public virtual void DestroyDialogueBox()
-    {
-        DialogueBoxClone.transform.GetChild(0).gameObject.SetActive(false);
-    }
-    #endregion
 }
