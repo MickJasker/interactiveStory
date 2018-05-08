@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EdgeMover : Interacter
 {
@@ -11,6 +12,7 @@ public class EdgeMover : Interacter
     {
         StartCoroutine(_move(player.GetComponent<Movement>()));
     }
+
 
     //Moves the player in a direction for as long as the player holds the mouse button
     IEnumerator _move(Movement player)

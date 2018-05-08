@@ -29,7 +29,6 @@ public class Choice : DialogueComponent {
 
     public void NextDialogue(int i)
     {
-        print("Clicked");
         Active = false;
         Dialogues[i].Interact(Current.Conversation);
         Reset();
@@ -40,7 +39,6 @@ public class Choice : DialogueComponent {
         Active = true;
         foreach(GameObject g in Buttons)
         {
-            print("Gameobject enabled");
             g.SetActive(true);
         }
 
