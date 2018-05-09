@@ -6,6 +6,7 @@ public class CameraMover : MonoBehaviour
 
     public Transform Target;
     public float Speed = 1f;
+    public float Distance;
     Camera Cam;
 
     public bool bounds;
@@ -15,7 +16,6 @@ public class CameraMover : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Target = GameObject.FindWithTag("Player").transform;
         Cam = GetComponent<Camera>();
     }
 
@@ -30,7 +30,7 @@ public class CameraMover : MonoBehaviour
             ClampBounds();
         }
 
-        transform.Translate(new Vector3(0, 0, -100));
+        transform.Translate(new Vector3(0, 0, -Distance));
     }
 
     // Update camera position

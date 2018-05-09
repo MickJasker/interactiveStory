@@ -37,21 +37,24 @@ public class Movement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            //Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 10);
             Interacter i = hit.collider.GetComponent<Interacter>();
             if (i != null)
             {
                 i.Interact(gameObject);
                 return;
             }
-
-            print("Found a collider without interact-script!");
         }
     }
 
     //Moves the character in a direction (currently only used when moving left and right)
     public void Move(Vector3 direction)
     {
-        transform.Translate(direction * Speed);
+        RaycastHit hit;
+        if (!Physics.Raycast(transform.position, direction, out hit, 1))
+        {
+            transform.Translate(direction * Speed);
+        }
     }
 
     //Moves the character towards a location. Character moves over the x-axis first, then moves over the x-axis
@@ -64,9 +67,8 @@ public class Movement : MonoBehaviour
         }
         else //if (transform.position.z != spot.z)
         {
-            Transform model = transform.GetChild(0);
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, spot.z);
-            model.position = Vector3.MoveTowards(model.position, pos, Speed);
+            transform.position = Vector3.MoveTowards(transform.position, pos, Speed);
         }
     }
 }

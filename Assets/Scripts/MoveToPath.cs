@@ -16,11 +16,10 @@ public class MoveToPath : Interacter {
         player.Locked = true;
         Active = true;
 
-        Transform model = player.transform.GetChild(0);
-        Vector3 endpos = model.position;
-        endpos.z = -3.58f;
+        Vector3 endpos = player.transform.position;
+        endpos.z = 0.5f;
 
-        while (model.transform.position != endpos)
+        while (player.transform.position != endpos)
         {
             player.MoveTowards(endpos);
             yield return null;

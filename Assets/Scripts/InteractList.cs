@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class InteractList : Interacter {
 
-    public List<Interacter> Modules;
+    List<Interacter> Modules;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        Modules = new List<Interacter>();
+        foreach (Transform child in transform)
+        {
+            Modules.Add(child.GetComponent<Interacter>());
+        }
+    }
 
     //Starts _cycle()
     public override void Interact(GameObject player)
@@ -16,6 +27,7 @@ public class InteractList : Interacter {
     IEnumerator _cycle(GameObject player)
     {
         Active = true;
+
 
         int index = 0;
         Modules[0].Interact(player);

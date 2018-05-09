@@ -16,13 +16,11 @@ public class MoveTowards : Interacter
         player.Locked = true;
         Active = true;
 
-        Transform model = player.transform.GetChild(0);
-
         Vector3 endpos = transform.position;
         endpos.y = player.transform.position.y;
-        endpos.z -= 2;
+        endpos.x -= 2;
 
-        while (model.transform.position != endpos)
+        while (player.transform.position != endpos)
         {
             player.MoveTowards(endpos);
             yield return null;

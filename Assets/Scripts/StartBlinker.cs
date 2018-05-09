@@ -23,7 +23,6 @@ public class StartBlinker : MonoBehaviour {
 
         Image background = GetComponent<Image>();
         RawImage arrows = transform.GetChild(0).GetComponent<RawImage>();
-        print("Arrows: " + arrows);
 
         background.color = c;
         arrows.color = c;
