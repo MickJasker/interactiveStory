@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpener : Interacter {
+public class DoorOpener : DialogueComponent {
 
     public Door Door;
 
-    public override void Interact(GameObject player)
+    public override void StartComponent()
     {
-        print("interacted");
         Door.Open();
+        Active = false;
     }
 }

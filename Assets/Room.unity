@@ -1016,11 +1016,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 447295768}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &482019338 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4987491475023022, guid: 41e2167c32a4eb44dbfadc6e5ebcc820,
-    type: 2}
-  m_PrefabInternal: {fileID: 2070025311}
 --- !u!1 &587866282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,15 +2021,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995222265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.6}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 482019338}
-  m_RootOrder: 2
+  m_Father: {fileID: 1841834948}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1171.1248, y: 744.04987}
+  m_AnchoredPosition: {x: 86.499756, y: 0.000061035156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995222267
@@ -3044,7 +3039,7 @@ MonoBehaviour:
   Speed: 1
   Distance: 7.16
   bounds: 1
-  minCameraPos: {x: -4.21, y: 3.11}
+  minCameraPos: {x: -3.75, y: 3.11}
   maxCameraPos: {x: 10, y: 100}
 --- !u!1 &1416412254
 GameObject:
@@ -4048,6 +4043,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1818206597}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!224 &1841834948 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224108425959101482, guid: 41e2167c32a4eb44dbfadc6e5ebcc820,
+    type: 2}
+  m_PrefabInternal: {fileID: 2070025311}
 --- !u!1 &1843255141
 GameObject:
   m_ObjectHideFlags: 0
@@ -4595,11 +4595,11 @@ Prefab:
     - target: {fileID: 224015759978541840, guid: 41e2167c32a4eb44dbfadc6e5ebcc820,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4089225020572986, guid: 41e2167c32a4eb44dbfadc6e5ebcc820, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114282644753068488, guid: 41e2167c32a4eb44dbfadc6e5ebcc820,
         type: 2}
