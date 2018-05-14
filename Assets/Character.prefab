@@ -841,10 +841,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Active: 0
-  Modules:
-  - {fileID: 114130277461648498}
-  - {fileID: 114464702335344454}
-  - {fileID: 114870038958088374}
 --- !u!114 &114295454865232376
 MonoBehaviour:
   m_ObjectHideFlags: 1
