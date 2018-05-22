@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockMover : Interacter {
 
     List<Vector3> DeltaSpeed;
+    public Camera OrthoCam;
 
     protected override void Start()
     {
@@ -27,9 +28,10 @@ public class BlockMover : Interacter {
                 enabled = false;
             }
 
-            Vector2 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = temp;
-            UpdateDeltaSpeed();
+            Vector3 pos = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            transform.position = pos;
+
             yield return null;
         }
 

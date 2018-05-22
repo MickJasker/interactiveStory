@@ -13,6 +13,11 @@ public class EdgeMover : Interacter
         StartCoroutine(_move(player.GetComponent<Movement>()));
     }
 
+    public void Stop()
+    {
+        Active = false;
+    }
+
 
     //Moves the player in a direction for as long as the player holds the mouse button
     IEnumerator _move(Movement player)
@@ -21,7 +26,7 @@ public class EdgeMover : Interacter
         {
             Active = true;
 
-            while (Input.GetMouseButton(0))
+            while (Input.GetMouseButton(0) && Active)
             {
                 player.Move(Direction);
                 yield return null;
