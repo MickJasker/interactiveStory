@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
+    public float OpenSpeed;
     bool Opened;
 
     Transform Door1;
@@ -23,6 +24,7 @@ public class Door : MonoBehaviour {
         if (!Opened)
         {
             StartCoroutine(_open());
+            Opened = true;
         }
     }
 
@@ -31,16 +33,18 @@ public class Door : MonoBehaviour {
         if (Opened)
         {
             StartCoroutine(_close());
+            Opened = false;
         }
     }
 
     IEnumerator _open()
     {
+        OpenSound();
         float end = Door1.transform.position.z + 2.3f;
         while (Door1.transform.position.z <= end)
         {
-            Door1.transform.position += Vector3.forward * Time.deltaTime * 3;
-            Door2.transform.position += Vector3.back * Time.deltaTime * 3;
+            Door1.transform.position += Vector3.forward * Time.deltaTime * OpenSpeed;
+            Door2.transform.position += Vector3.back * Time.deltaTime * OpenSpeed;
             yield return null;
         }
 
@@ -49,14 +53,19 @@ public class Door : MonoBehaviour {
 
     IEnumerator _close()
     {
+        OpenSound();
         float end = Door1.transform.position.x - 2.3f;
         while (Door1.transform.position.z >= end)
         {
-            Door1.transform.position += Vector3.back * Time.deltaTime * 3;
-            Door2.transform.position += Vector3.forward * Time.deltaTime * 3;
+            Door1.transform.position += Vector3.back * Time.deltaTime * OpenSpeed;
+            Door2.transform.position += Vector3.forward * Time.deltaTime * OpenSpeed;
             yield return null;
         }
 
         Hitbox.enabled = true;
+    }
+
+    void OpenSound(){
+        GetComponent<AudioSource>().Play();
     }
 }
