@@ -1063,11 +1063,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 224870416397409120, guid: ee5912894b19d0141bda98456cd73475,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4172774584280150, guid: ee5912894b19d0141bda98456cd73475, type: 2}
       propertyPath: m_LocalPosition.x
       value: -18.44
@@ -1100,11 +1095,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114571274496227402, guid: ee5912894b19d0141bda98456cd73475,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1315513752}
     - target: {fileID: 114500745501008258, guid: ee5912894b19d0141bda98456cd73475,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -1115,6 +1105,11 @@ Prefab:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1315513753}
+    - target: {fileID: 114571274496227402, guid: ee5912894b19d0141bda98456cd73475,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1315513752}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee5912894b19d0141bda98456cd73475, type: 2}
   m_IsPrefabParent: 0
