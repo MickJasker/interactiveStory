@@ -940,6 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab78a7f85800874ea751abedd72181c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OpenSpeed: 0
 --- !u!1 &391105965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +1978,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114571274496227402, guid: ee5912894b19d0141bda98456cd73475,
+    - target: {fileID: 114500745501008258, guid: ee5912894b19d0141bda98456cd73475,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -1987,7 +1988,7 @@ Prefab:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1315513753}
-    - target: {fileID: 114500745501008258, guid: ee5912894b19d0141bda98456cd73475,
+    - target: {fileID: 114571274496227402, guid: ee5912894b19d0141bda98456cd73475,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -1995,11 +1996,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee5912894b19d0141bda98456cd73475, type: 2}
   m_IsPrefabParent: 0
---- !u!20 &888186309 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20247680362143788, guid: ee5912894b19d0141bda98456cd73475,
-    type: 2}
-  m_PrefabInternal: {fileID: 732415984}
 --- !u!1 &909757435
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,7 +2726,6 @@ GameObject:
   - component: {fileID: 1147671247}
   - component: {fileID: 1147671246}
   - component: {fileID: 1147671245}
-  - component: {fileID: 1147671249}
   m_Layer: 0
   m_Name: PuzzleBlock Single
   m_TagString: Untagged
@@ -2804,19 +2799,6 @@ Transform:
   m_Father: {fileID: 1240438408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1147671249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1147671244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b001f5214b205e4497d8c8adfe71e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 0
-  OrthoCam: {fileID: 888186309}
 --- !u!1 &1210528316
 GameObject:
   m_ObjectHideFlags: 0
