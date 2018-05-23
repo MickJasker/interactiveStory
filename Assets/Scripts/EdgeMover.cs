@@ -24,14 +24,20 @@ public class EdgeMover : Interacter
     {
         if (!player.Locked)
         {
-            Active = true;
-
+            AudioSource walk = GetComponent<AudioSource>();
             while (Input.GetMouseButton(0) && Active)
             {
+                if (!walk.isPlaying)
+                {
+                    walk.pitch = Random.Range(0.8f, 1.2f);
+                    walk.Play();
+                }
+
                 player.Move(Direction);
                 yield return null;
             }
 
+            walk.Stop();
             Active = false;
         }
     }
