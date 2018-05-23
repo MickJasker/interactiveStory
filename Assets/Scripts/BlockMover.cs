@@ -34,33 +34,57 @@ public class BlockMover : Interacter {
             
             if (Collision(pos))
             {
-                //transform.position = pos;
+                transform.Translate(pos);
             }
-            Vector3 pos2 = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
-            pos2.z = 0;
-            transform.position = pos2;
+            transform.Translate(pos);
+            DeltaPosition = transform.position;
             yield return null;
         }
     }
 
-    //determines axis furthes from the deltaposition, and returns the next position
+    ///determines axis furthes from the deltaposition, and returns the next position.
+    ///if the object isn't moved enough, the object will not move
     Vector3 LongestAxis()
     {
         Vector3 pos = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
 
-        Vector3 distpos = pos - DeltaPosition;
+        Vector3 distpos = (pos + DeltaPosition);
 
-        UpdateDelta();
+        print("Cursor position: " + pos);
+        print("Delta position: " + DeltaPosition);
+        print("Distance: " + distpos);
+        print("");
 
         if (Mathf.Abs(distpos.x) >= Mathf.Abs(distpos.y))
         {
-            return new Vector3(pos.x, 0, 0);
+            if (Mathf.Abs(distpos.x) >= 2)
+            {
+                if (distpos.x > 2)
+                {
+                    return Vector3.right;
+                }
+                else //(if distpos.x < -2)
+                {
+                    return Vector3.left;
+                }
+            }
+            distpos = new Vector3(pos.x, 0, 0);
+            if (Mathf.Abs(distpos.x) <= 2)
+            {
+                distpos.x = 0;
+            }
         }
         else
         {
-            return new Vector3(0, pos.y, 0);
+            distpos = new Vector3(0, pos.y, 0);
+            if (Mathf.Abs(distpos.y) <= 2)
+            {
+                distpos.y = 0;
+            }
         }
+
+        return distpos;
     }
 
     //Checks if there's a collider in front of the object
