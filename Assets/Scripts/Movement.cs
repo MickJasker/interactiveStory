@@ -50,6 +50,7 @@ public class Movement : MonoBehaviour
     //Moves the character in a direction (currently only used when moving left and right)
     public void Move(Vector3 direction)
     {
+        
         RaycastHit hit;
         if (!Physics.Raycast(transform.position, direction, out hit, 1))
         {
@@ -57,9 +58,10 @@ public class Movement : MonoBehaviour
         }
     }
 
-    //Moves the character towards a location. Character moves over the x-axis first, then moves over the x-axis
+    //Moves the character towards a location. Character moves over the x-axis first, then moves over the z-axis
     public void MoveTowards(Vector3 spot)
     {
+        
         if (transform.position.x != spot.x)
         {
             Vector3 pos = new Vector3(spot.x, transform.position.y, transform.position.z);
