@@ -11,6 +11,8 @@ public class BlockMover : Interacter {
 
     [Space]
     public float MinMovement;
+    [Range(0, 100)]
+    public float Speed;
     public List<BlockRaycaster> RaycastScripts;
 
     protected override void Start()
@@ -37,7 +39,7 @@ public class BlockMover : Interacter {
             Vector3 pos = LongestAxis();
             if (!Collision(DistPosition))
             {
-               transform.position = pos;
+               transform.Translate(pos);
             }
 
             yield return null;
@@ -54,24 +56,35 @@ public class BlockMover : Interacter {
         DeltaPosition = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
 
         //Checks what the largest axis is, X or Y
-        //if the largest axis is X
         if (Mathf.Abs(DistPosition.x) >= Mathf.Abs(DistPosition.y))
         {
+            //if the largest axis is X
             if (Mathf.Abs(DistPosition.x) >= MinMovement)
             {
-                return new Vector2(pos.x, transform.position.y);
+                if (DistPosition.x >= 0)
+                {
+                    return Vector2.right / 10 * Speed * Time.deltaTime;
+                }
+                else
+                {
+                    return Vector2.left / 10 * Speed * Time.deltaTime;
+                }
             }
         }
-        //if the largest axis is Y
         else
         {
-            if (Mathf.Abs(DistPosition.y) >= MinMovement)
+            //if the largest axis is Y
+            if (DistPosition.y >= 0)
             {
-                return new Vector2(transform.position.x, pos.y);
+                return Vector2.up / 10 * Speed * Time.deltaTime;
+            }
+            else
+            {
+                return Vector2.down / 10 * Speed * Time.deltaTime;
             }
         }
 
-        return transform.position;
+        return Vector2.zero;
     }
 
     //Checks if there's a collider in front of the object

@@ -632,6 +632,7 @@ MonoBehaviour:
   Active: 0
   OrthoCam: {fileID: 197094152}
   MinMovement: 0.05
+  Speed: 0
   RaycastScripts: []
 --- !u!1 &192608096
 GameObject:
@@ -2871,6 +2872,7 @@ MonoBehaviour:
   Active: 0
   OrthoCam: {fileID: 197094152}
   MinMovement: 0.05
+  Speed: 75
   RaycastScripts:
   - {fileID: 1147671251}
 --- !u!54 &1147671250
