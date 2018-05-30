@@ -5,8 +5,13 @@ using UnityEngine;
 public class BlockMover : Interacter {
 
     List<Vector3> DeltaSpeed;
-    Vector3 DeltaPosition;
+    Vector2 DistPosition;
+    Vector2 DeltaPosition;
     public Camera OrthoCam;
+
+    [Space]
+    public float MinMovement;
+    public List<BlockRaycaster> RaycastScripts;
 
     protected override void Start()
     {
@@ -30,74 +35,93 @@ public class BlockMover : Interacter {
             }
 
             Vector3 pos = LongestAxis();
-
-            
-            if (Collision(pos))
+            if (!Collision(DistPosition))
             {
-                transform.Translate(pos);
+               transform.position = pos;
             }
-            transform.Translate(pos);
-            DeltaPosition = transform.position;
+
             yield return null;
         }
     }
 
-    ///determines axis furthes from the deltaposition, and returns the next position.
-    ///if the object isn't moved enough, the object will not move
+    //determines axis furthes from the deltaposition, and returns the next position.
+    //if the object isn't moved enough, the object will not move
     Vector3 LongestAxis()
     {
-        Vector3 pos = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
-        pos.z = 0;
+        //Calculates the distance traveled between frames
+        Vector2 pos = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
+        DistPosition = (pos - DeltaPosition);
+        DeltaPosition = OrthoCam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 distpos = (pos + DeltaPosition);
-
-        print("Cursor position: " + pos);
-        print("Delta position: " + DeltaPosition);
-        print("Distance: " + distpos);
-        print("");
-
-        if (Mathf.Abs(distpos.x) >= Mathf.Abs(distpos.y))
+        //Checks what the largest axis is, X or Y
+        //if the largest axis is X
+        if (Mathf.Abs(DistPosition.x) >= Mathf.Abs(DistPosition.y))
         {
-            if (Mathf.Abs(distpos.x) >= 2)
+            if (Mathf.Abs(DistPosition.x) >= MinMovement)
             {
-                if (distpos.x > 2)
-                {
-                    return Vector3.right;
-                }
-                else //(if distpos.x < -2)
-                {
-                    return Vector3.left;
-                }
-            }
-            distpos = new Vector3(pos.x, 0, 0);
-            if (Mathf.Abs(distpos.x) <= 2)
-            {
-                distpos.x = 0;
+                return new Vector2(pos.x, transform.position.y);
             }
         }
+        //if the largest axis is Y
         else
         {
-            distpos = new Vector3(0, pos.y, 0);
-            if (Mathf.Abs(distpos.y) <= 2)
+            if (Mathf.Abs(DistPosition.y) >= MinMovement)
             {
-                distpos.y = 0;
+                return new Vector2(transform.position.x, pos.y);
             }
         }
 
-        return distpos;
+        return transform.position;
     }
 
     //Checks if there's a collider in front of the object
     bool Collision(Vector3 direction)
     {
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, direction, Color.yellow, Time.deltaTime);
-        if (Physics.Raycast(transform.position, direction, out hit))
+        if (DistPosition != Vector2.zero)
         {
-            return false;
+            foreach (BlockRaycaster br in RaycastScripts)
+            {
+                Direction dEnum = ConvertVector(direction);
+                if (br.Contains(dEnum) && br.Collided(dEnum))
+                {
+                    print("collided");
+                    return true;
+                }
+            }
         }
-        
-        return true;
+
+        print("not collided");
+        return false;
+    }
+
+    Direction ConvertVector(Vector3 v)
+    {
+        if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
+        {
+            if (v.x > 0)
+            {
+                return Direction.Right;
+            }
+            else //if (v.x < 0)
+            {
+                return Direction.Left;
+            }
+        }
+        else if (Mathf.Abs(v.x) < Mathf.Abs(v.y))
+        {
+            if (v.y > 0)
+            {
+                return Direction.Up;
+            }
+            else //if(v.y < 0)
+            {
+                return Direction.Down;
+            }
+        }
+        else
+        {
+            throw new System.NotImplementedException("Raycasting direction unknown!");
+        }
     }
 
     //keeps track of a list of positions of the last 10 frames
