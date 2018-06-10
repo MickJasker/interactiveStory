@@ -75,11 +75,17 @@ public class walkLeftToRight : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
+		//checks wether you want the enemy to address the player in any way
 		if (aggressive == true)
 		{
+			//makes sure only the protagonist is the target no other npc's
 			if (col.tag == "Protagonist")
 			{
+				//makes sure the player can no longer move
+				col.GetComponent<Movement>().Locked = true;
+				//stops the enemy from walking
 				ableToWalk = false;
+				//makes sure the enemy looks at the player's direction
 				if (col.transform.position.x < transform.position.x)
 				{
 					renderer.sprite = characterLeft;

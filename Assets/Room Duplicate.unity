@@ -2338,7 +2338,9 @@ GameObject:
   - component: {fileID: 919331519}
   - component: {fileID: 919331518}
   - component: {fileID: 919331517}
+  - component: {fileID: 919331522}
   - component: {fileID: 919331520}
+  - component: {fileID: 919331521}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2357,8 +2359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a298808f0f094c8a89ca8af594bf732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aggressive: 1
   startPoint: 2
-  endPoint: 10
+  endPoint: 5
   speed: 3
   characterLeft: {fileID: 21300000, guid: b74580ee487e54992a06a9fe82eabdcd, type: 3}
   characterRight: {fileID: 21300000, guid: 6bf820e8a39e04432a846d799f243e55, type: 3}
@@ -2413,7 +2416,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 919331516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.87, y: 2.847, z: -0.21620083}
+  m_LocalPosition: {x: 9.87, y: 2.8, z: 0.5}
   m_LocalScale: {x: 0.47805062, y: 0.47805062, z: 0.47805062}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2429,8 +2432,34 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6400006, y: 11.470001, z: 0.20000003}
+  m_Size: {x: 4, y: 11.470001, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &919331521
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919331516}
+  serializedVersion: 2
+  m_Mass: 50
+  m_Drag: 100
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &919331522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919331516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c89e24a5f3543bc98496f0707f5c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &941732153
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,7 +3413,7 @@ GameObject:
   - component: {fileID: 1315513757}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Protagonist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3412,7 +3441,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2, y: 6.35, z: 1}
+  m_Size: {x: 4, y: 6.35, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &1315513755
 SpriteRenderer:
