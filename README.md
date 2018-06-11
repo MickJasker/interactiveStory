@@ -1,6 +1,6 @@
 # Qlunuqh
 
-Dit repository bevat een technisch prototype voor de game 'Ecape to Qlunuqh'.
+Dit repository bevat een technisch prototype voor de game 'Escape to Qlunuqh'.
 
 De huidige onderdelen hiervan zijn:
 - Movement & interactie input
