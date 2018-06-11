@@ -97,13 +97,10 @@ public class BlockMover : Interacter {
                 Direction dEnum = ConvertVector(direction);
                 if (br.Contains(dEnum) && br.Collided(dEnum))
                 {
-                    print("collided");
                     return true;
                 }
             }
         }
-
-        print("not collided");
         return false;
     }
 

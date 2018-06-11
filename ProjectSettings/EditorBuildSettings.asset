@@ -8,6 +8,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PuzzleRoom.unity
     guid: 2f4ec647cceceae4f9ac2988c275f7bd
-  - enabled: 0
-    path: Assets/Scenes/dev.unity
-    guid: cd371fcc51fe2ba4a961c954c44038ca

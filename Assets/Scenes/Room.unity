@@ -1086,6 +1086,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 81181647902965668, guid: ee5912894b19d0141bda98456cd73475,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee5912894b19d0141bda98456cd73475, type: 2}
   m_IsPrefabParent: 0
@@ -2258,6 +2263,11 @@ Prefab:
       propertyPath: Door
       value: 
       objectReference: {fileID: 388451501}
+    - target: {fileID: 224545233005396682, guid: c752811470ed7564cb81207807fb6b83,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c752811470ed7564cb81207807fb6b83, type: 2}
   m_IsPrefabParent: 0
@@ -3546,7 +3556,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3570,7 +3580,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &1818206597
 GameObject:
   m_ObjectHideFlags: 0
